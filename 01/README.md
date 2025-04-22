@@ -17,4 +17,13 @@
 
 ## Задание 2 Задание 2. Установка и настройка локального kubectl
 
-* 
+* Устанавливаем kubctl: sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+* Копируем конфиг: microk8s config > ./.kube/
+* проверяем:  kubectl get pods -A
+
+![kubctl ok](https://github.com/A-Tagir/kubernetes/blob/main/01/Kubernetes01_Kubctl_ready.png)
+
+* Подключение к Dashboard  nohup microk8s kubectl port-forward -n kube-system service/kubernetes-dashboard 10443:443 --address 0.0.0.0 &
+* https://172.26.89.194:10443/
+
+![Dashboard](https://github.com/A-Tagir/kubernetes/blob/main/01/Kubernetes01_mikroK8Sdashboard.png)
