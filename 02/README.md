@@ -16,3 +16,21 @@
 ![echo_ok](https://github.com/A-Tagir/kubernetes/blob/main/02/Kubernetes01_Echoservice_ok.png)
 
 ## Задание 2. 
+
+* Создаю Pod:
+
+[netology-web.yaml](https://github.com/A-Tagir/kubernetes/blob/main/02/netology-web.yaml)
+
+* Применяю: kubectl apply -f netology-web.yaml
+* Создаю сервис:
+
+[netology-service.yaml](https://github.com/A-Tagir/kubernetes/blob/main/02/netology-service.yaml)
+
+* Применяю: kubectl apply -f netology-service.yaml
+* Проверяю:
+![get_pod_svc](https://github.com/A-Tagir/kubernetes/blob/main/02/Kubernetes01_get_svc.png)
+* Пробрасываю порт: kubectl port-forward service/netology-web 8080:80
+
+* Подключаюсь:
+
+![Service_ok](https://github.com/A-Tagir/kubernetes/blob/main/02/Kubernetes01_service_netology-web.png)
