@@ -22,4 +22,13 @@ env:
 * Согласно заданию, увеличиваем количество реплик до 2-х:  replicas: 2
 * Проверяем и видим, что реплик стало две, успешно запущены:
 ![replicas_2](https://github.com/A-Tagir/kubernetes/blob/main/03/Kubernetes01_replicas_2.png)
-* 
+* Согласно заданию, создаем сервис
+[nginx-service](https://github.com/A-Tagir/kubernetes/blob/main/03/nginx-service.yaml)
+* Применяем и проверяем, сервис запустился. Nginx порт 8080, multitool 8090
+![service_ok](https://github.com/A-Tagir/kubernetes/blob/main/03/Kubernetes01_Service_ok.png)
+* Согласно заданию создаем отдельный pod multitool:
+[multitool.yaml](https://github.com/A-Tagir/kubernetes/blob/main/03/multitool.yaml)
+* Применяем: 
+![pod_multitool_ok](https://github.com/A-Tagir/kubernetes/blob/main/03/Kubernetes01_pod_multitool.png)
+* Заходим в созданный pod: kubectl exec -it pod-multitool -- /bin/bash
+  ![access_ok]()
