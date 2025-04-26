@@ -31,4 +31,6 @@ env:
 * Применяем: 
 ![pod_multitool_ok](https://github.com/A-Tagir/kubernetes/blob/main/03/Kubernetes01_pod_multitool.png)
 * Заходим в созданный pod: kubectl exec -it pod-multitool -- /bin/bash
-  ![access_ok]()
+  ![access_ok](https://github.com/A-Tagir/kubernetes/blob/main/03/Kubernetes01_access_ok.png)
+
+## Задание 2. 
