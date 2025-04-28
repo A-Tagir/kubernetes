@@ -33,4 +33,19 @@ env:
 * Заходим в созданный pod: kubectl exec -it pod-multitool -- /bin/bash
   ![access_ok](https://github.com/A-Tagir/kubernetes/blob/main/03/Kubernetes01_access_ok.png)
 
-## Задание 2. 
+## Задание 2. Создать Deployment и обеспечить старт основного контейнера при выполнении условий
+
+* Создаем deployment: 
+[nginx-deploy-with-check.yaml](https://github.com/A-Tagir/kubernetes/blob/main/03/nginx-deploy-with-check.yaml)
+
+Здесь нужно отметить, что в проверке доступности сервиса должно быть полное доменное имя netology-nginx.default.svc.cluster.local, иначе в некоторых контейнерах не будет работать.
+* Запускаем  kubectl apply -f nginx-deploy-with-check.yaml
+* Проверяем
+
+![Pending](https://github.com/A-Tagir/kubernetes/blob/main/03/Kubernetes01_Deploy_Pending.png)
+
+* Запускаем сервис: kubectl apply -f nginx-service.yaml
+* Проверяем:
+
+![Ready](https://github.com/A-Tagir/kubernetes/blob/main/03/Kubernetes01_Deploy_Ready.png)
+
