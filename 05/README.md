@@ -36,4 +36,21 @@
 
 ## Задание 2: Создать Ingress и обеспечить доступ к приложениям снаружи кластера.
 
-*
+* Включаем ingress - контроллер:
+
+![ingress_enabled](https://github.com/A-Tagir/kubernetes/blob/main/05/Kubernetes01_enable_ingress.png)
+
+* Создаем Ingress, обеспечивающий доступ снаружи по IP-адресу кластера MicroK8S так, чтобы при запросе только по адресу открывался frontend а при добавлении /api - backend. Параметр host не указываем, так что при любом имени запрос будет обрабатываться:
+
+[ingress.yaml](https://github.com/A-Tagir/kubernetes/blob/main/05/ingress.yaml)
+
+* Проверяем доступ:
+
+![ingress_ok](https://github.com/A-Tagir/kubernetes/blob/main/05/Kubernetes01_ingress_ok.png)
+
+* C хост машины:
+
+![ingress_host_machine](https://github.com/A-Tagir/kubernetes/blob/main/05/Kubernetes01_ingress_host_machine.png)
+
+![ingress_host_machine_api](https://github.com/A-Tagir/kubernetes/blob/main/05/Kubernetes01_ingress_host_machine_api.png)
+
