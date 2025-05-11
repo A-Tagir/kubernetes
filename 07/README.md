@@ -25,10 +25,11 @@
 
 ![read-write_OK](https://github.com/A-Tagir/kubernetes/blob/main/07/Kubernetes07_pvc_r-w_ok.png)
 
-* Согласно заданию удаляем deploy и pvc. Проверяем PV - он находится в статусе Error. 
+* Согласно заданию удаляем deploy и pvc. Проверяем PV - он находится в статусе Failed. 
 
 ![PV-Error](https://github.com/A-Tagir/kubernetes/blob/main/07/Kubernetes07_pv_error.png)
 
+  Командой  kubectl describe pv pv1  проверяем почему:
   Причина - был задан persistentVolumeReclaimPolicy: Delete, но host_path deleter only supports /tmp/.+ but received provided /var/data/pv1. В данном случае правильно было бы указать Retain, тогда PV оказался бы в статусе Released.
 
 * Удаляем PV: kubectl delete pv pv1
