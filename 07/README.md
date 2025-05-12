@@ -49,3 +49,52 @@ tiger@VM1:/var/data/pv1
 
 ## Задание 2. Создать Deployment приложения, которое может хранить файлы на NFS с динамическим созданием PV.
 
+* Настраиваем NFS по инструкции https://microk8s.io/docs/how-to-nfs:
+
+```
+sudo apt-get install nfs-kernel-server
+sudo mkdir -p /srv/nfs
+sudo chown nobody:nogroup /srv/nfs
+sudo chmod 0777 /srv/nfs
+sudo mv /etc/exports /etc/exports.bak
+echo '/srv/nfs 10.0.0.0/8(rw,sync,no_subtree_check)' | sudo tee /etc/exports
+sudo systemctl restart nfs-kernel-server
+microk8s enable helm3
+microk8s helm3 repo add csi-driver-nfs https://raw.githubusercontent.com/kubernetes-csi/csi-driver-nfs/master/charts
+microk8s helm3 repo update
+icrok8s helm3 install csi-driver-nfs csi-driver-nfs/csi-driver-nfs \
+    --namespace kube-system \
+    --set kubeletDir=/var/snap/microk8s/common/var/lib/kubelet
+```
+* Конфигурируем nfs чтобы они принимал соединения подсетей 10.0.0.0/8 и 172.0.0.0/8
+```
+/srv/nfs 10.0.0.0/8(rw,sync,no_subtree_check)
+/srv/nfs 172.0.0.0/8(rw,sync,no_subtree_check)
+```
+* Создаем StorageClass for NFS:
+
+[sc-nfs.yaml](https://github.com/A-Tagir/kubernetes/blob/main/07/sc-nfs.yaml)
+
+* Создаем PVC:
+
+[pvc-nfs.yaml](https://github.com/A-Tagir/kubernetes/blob/main/07/pvc-nfs.yaml)
+
+* Применяем и проверяем, видим, что PV создался автоматически:
+
+![PVC-NFS](https://github.com/A-Tagir/kubernetes/blob/main/07/Kubernetes07_pvc_nfs_ok.png)
+
+* Создаем Deploy (меняем в прежнем claimName: pvc-nfs):
+
+[deploy-nfs.yaml](https://github.com/A-Tagir/kubernetes/blob/main/07/deploy-nfs.yaml)
+
+* Применяем и проверяем, видим что файл создается, пишется и доступен с multitool:
+
+![deploy_nfs_ok](https://github.com/A-Tagir/kubernetes/blob/main/07/Kubernetes07_deploy_nfs_ok.png)
+
+
+
+
+
+
+
+
