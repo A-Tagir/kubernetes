@@ -6,7 +6,7 @@ metadata:
     app: nginx
   namespace: default
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: nginx
@@ -24,7 +24,13 @@ spec:
         image: wbitt/network-multitool
         ports:
           - containerPort: 8080
-  
+        env:
+          - name: HTTP_PORT
+            valueFrom:
+              configMapKeyRef:
+                name: mt-config
+                key: HTTP_PORT
+
 
         
 
