@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -20,6 +21,9 @@ spec:
         image: nginx:1.14.2
         ports:
           - containerPort: 80
+        volumeMounts:
+        - name: web-html
+          mountPath: /usr/share/nginx/html
       - name: multitool
         image: wbitt/network-multitool
         ports:
@@ -30,7 +34,8 @@ spec:
               configMapKeyRef:
                 name: mt-config
                 key: HTTP_PORT
-
-
-        
-
+      volumes:
+      - name: web-html
+        configMap:
+          name: nginx-html
+---
