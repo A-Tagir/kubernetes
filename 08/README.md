@@ -43,4 +43,36 @@ kubectl apply -f nginx-deploy-cm.yaml
 
 * Видим, что index.html создался в нужной директории, а страница открывается через service.
 
-## Задание 2. 
+## Задание 2. Создать приложение с вашей веб-страницей, доступной по HTTPS
+
+* Создаем self-signed сертификат для домена netotest.local (домен должен совпадать в ingress! иначе TLS сертификат будет заменен на default fake kubernetes)
+```
+ openssl req -new -x509 -days 9999 -nodes -out cert.pem -keyout cert.key
+```
+* Создаем Secret
+```
+ kubectl create secret tls nginx-web --cert=./cert.pem --key=./cert.key
+secret/nginx-web created
+tiger@VM1:~/Kubernetes/08$ kubectl get secret
+NAME        TYPE                DATA   AGE
+nginx-web   kubernetes.io/tls   2      11s
+```
+* Добавляем в hosts строку: 172.26.89.194   netotest.local
+* Создаем Ingress:
+
+[ingress.yaml](https://github.com/A-Tagir/kubernetes/blob/main/08/ingress.yaml)
+
+* Создаем Service:
+
+[nginx-service-tls.yaml](https://github.com/A-Tagir/kubernetes/blob/main/08/nginx-service-tls.yaml)
+
+* Deploy используем прежний:
+
+[nginx-deploy-cm.yaml](https://github.com/A-Tagir/kubernetes/blob/main/08/nginx-deploy-cm.yaml)
+
+* Применяем и проверяем:
+
+![tls_ok](https://github.com/A-Tagir/kubernetes/blob/main/08/Kubernetes08-tls_ok.png)
+
+- Видим, что отвечает правильная страница, а TLS-сертификат применился правильный.
+
