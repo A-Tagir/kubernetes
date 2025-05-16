@@ -27,4 +27,20 @@ kubectl apply -f nginx-deploy-cm.yaml
 
 ![config-map-ok](https://github.com/A-Tagir/kubernetes/blob/main/08/Kubernetes08-multitool-configmap_ok.png)
 
-* 
+* Создаем веб-страницу и подключаем с помощью configMap:
+
+[configmap-nginx.yaml](https://github.com/A-Tagir/kubernetes/blob/main/08/configmap-nginx.yaml)
+
+[nginx-deploy-cm.yaml](https://github.com/A-Tagir/kubernetes/blob/ef6ba40dc834c9435f447b3a529db3437a406b95/08/nginx-deploy-cm.yaml)
+
+* Создаем сервис:
+
+[nginx-service-nport.yaml](https://github.com/A-Tagir/kubernetes/blob/main/08/nginx-service-nport.yaml)
+
+* Применяем и проверяем:
+
+![html_ok](https://github.com/A-Tagir/kubernetes/blob/main/08/Kubernetes08-html_ok.png)
+
+* Видим, что index.html создался в нужной директории, а страница открывается через service.
+
+## Задание 2. 
