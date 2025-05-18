@@ -1,0 +1,15 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  namespace: default
+  name: netology-role-binding
+subjects:
+- kind: User
+  name: netology
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: netology-Role
+  apiGroup: rbac.authorization.k8s.io
+---
