@@ -57,4 +57,34 @@ netology-chart  default         2               2025-05-22 19:01:22.703615783 +0
 
 ## Задание 2: Запустить две версии в разных неймспейсах
 
-* 
+* Создаем namespace app1, app2:
+```
+tiger@VM1:~/Kubernetes/10/netology-chart$ kubectl create namespace app1
+namespace/app1 created
+tiger@VM1:~/Kubernetes/10/netology-chart$ kubectl create namespace app2
+namespace/app2 created
+```
+* Запускаем две версии в app1:
+```
+helm install netology-chart --generate-name -n app1
+helm install netology-chart --generate-name -n app1
+ helm list -n app1
+NAME                            NAMESPACE       REVISION        UPDATED                                 STATUS          CHART                  APP VERSION
+netology-chart-1747931351       app1            1               2025-05-22 19:29:11.932616461 +0300 MSK deployed        netology-chart-0.1.0   1.16.0
+netology-chart-1747931353       app1            1               2025-05-22 19:29:13.561665959 +0300 MSK deployed        netology-chart-0.1.0   1.16.0
+```
+* Запускаем версию в app2:
+```
+ helm install netology-chart --generate-name -n app2
+NAME: netology-chart-1747931371
+LAST DEPLOYED: Thu May 22 19:29:31 2025
+NAMESPACE: app2
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+tiger@VM1:~/Kubernetes/10$ helm list -n app2
+NAME                            NAMESPACE       REVISION        UPDATED                                 STATUS          CHART                  APP VERSION
+netology-chart-1747931371       app2            1               2025-05-22 19:29:31.592169334 +0300 MSK deployed        netology-chart-0.1.0   1.16.0
+```
+* Видим, что у нас 3 копии приложения.
+  
