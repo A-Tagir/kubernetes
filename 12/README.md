@@ -4,6 +4,6 @@
 
 * Чек-лист 5 ВМ с Ubuntu. Создаю Виртуальную машину с Ubuntu, добавляю свой ключ и клонирую еще на 4 машины:
 
-![]()
+![VMs-created](https://github.com/A-Tagir/kubernetes/blob/main/12/Kubernetes12_Cluster_VMs.png)
 
 * 
