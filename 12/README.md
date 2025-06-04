@@ -50,4 +50,10 @@ sudo chmod tiger:tiger /home/tiger/.kube/config
 ```
 * Проверяем
 
-![kubectl_ok]()
+![kubectl_ok](https://github.com/A-Tagir/kubernetes/blob/main/12/Kubernetes12_Cluster_kubectl_OK.png)
+
+![etcd_ok](https://github.com/A-Tagir/kubernetes/blob/main/12/Kubernetes12_Cluster_etcd_OK.png)
+
+## Задание 2*. Установить HA кластер
+
+*
