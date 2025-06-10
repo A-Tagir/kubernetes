@@ -54,7 +54,7 @@ sudo chmod tiger:tiger /home/tiger/.kube/config
 
 ![etcd_ok](https://github.com/A-Tagir/kubernetes/blob/main/12/Kubernetes12_Cluster_etcd_OK.png)
 
-## Задание 1.  Установить HA кластер
+## Задание 2.  Установить HA кластер
 
 * Будем устанавливать кластер состоящий из 3-х мастеров и 2-х вокеров.
 * В качестве HA будет keepalive, в качестве балансировщика HAProxy. Они будут также на мастер-нодах.
