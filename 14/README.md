@@ -15,4 +15,26 @@
 
 ## Задание 2. Обновить приложение.
 
-* 
+* Создаем deploy и выбираем стратегию RollingUpdate поскольку приложение должно быть доступно:
+
+[nginx-multitool-deploy.yaml](https://github.com/A-Tagir/kubernetes/blob/main/14/nginx-multitool-deploy.yaml)
+
+* Применяем, затем обновляем nginx до 1.20
+```
+kubectl set image deployment/nginx-multitool-deployment nginx=nginx:1.20
+deployment.apps/nginx-multitool-deployment image updated
+```
+![apply_update_ok](https://github.com/A-Tagir/kubernetes/blob/main/14/Kubernetes14_update_ok.png)
+
+* Теперь, согласно заданию обновляем до версии 1.28:
+
+![1.28_ok](https://github.com/A-Tagir/kubernetes/blob/main/14/Kubernetes14_1-28update_ok.png)
+
+* Видим, что обновление также прошло успешно, версия nginx теперь 1.28.
+* Пробуем обновить до 1.38:
+![1.38-failed](https://github.com/A-Tagir/kubernetes/blob/main/14/Kubernetes14_1-38update_failed.png)
+* Видим, что обновление не прошло, поскольку образа 1.38 не существует. Приложение доступно. Откатываем:
+![rollout_ok](https://github.com/A-Tagir/kubernetes/blob/main/14/Kubernetes14_1-38-rollout_ok.png)
+
+## Задание 3.
+
