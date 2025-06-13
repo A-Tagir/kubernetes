@@ -28,6 +28,8 @@
 
 * Создаем правило, которое разрешает доступ с frontend на backend и c backend на cache. Применяем и проверяем:
 
+[policy-apply.yaml](https://github.com/A-Tagir/kubernetes/blob/main/13/policy-apply.yaml)
+
 ![policy_ok](https://github.com/A-Tagir/kubernetes/blob/main/13/Kubernetes13_access_apply_policy_ok.png)
 
 * Видим, что доступ появился согласно правилам, а в других комбинациях доступа нет.
