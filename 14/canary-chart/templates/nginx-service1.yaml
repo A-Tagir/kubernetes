@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-nginx1
+spec:
+  selector:
+    app: {{ .Release.Name }}-nginx1
+  ports:
+    - name: {{ .Release.Name }}-nginx1
+      protocol: TCP
+      port: 80
+
+
+  
+    

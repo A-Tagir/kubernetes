@@ -1,0 +1,10 @@
+---
+namespace: default
+canary:
+  replicaCount: 1
+  image: nginx:1.20
+  containerPort: 80
+
+ingresscanary:
+  port: 80
+---
