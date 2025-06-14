@@ -36,5 +36,49 @@ deployment.apps/nginx-multitool-deployment image updated
 * Видим, что обновление не прошло, поскольку образа 1.38 не существует. Приложение доступно. Откатываем:
 ![rollout_ok](https://github.com/A-Tagir/kubernetes/blob/main/14/Kubernetes14_1-38-rollout_ok.png)
 
-## Задание 3.
+## Задание 3. Создать Canary deployment
+1. Создать два deployment'а приложения nginx.
+2. При помощи разных ConfigMap сделать две версии приложения — веб-страницы.
+3. помощью ingress создать канареечный деплоймент, чтобы можно было часть трафика перебросить на разные версии приложения.
 
+* Создаю helm-chart:
+[canary-chart](https://github.com/A-Tagir/kubernetes/tree/main/14/canary-chart)
+* ingress при обращении к ссылке /v1 будет направлять в приложение v1 а по ссылке /v2 - в приложение v2
+* добавляем nginx.ingress.kubernetes.io/rewrite-target: /  чтобы в самом nginx обращение было в корневую.
+* Проверяем:
+```
+helm test canary-chart/
+Error: releaseTest: Release name is invalid: canary-chart/
+tiger@VM1:~/Kubernetes/14$ helm lint canary-chart/
+==> Linting canary-chart/
+[INFO] Chart.yaml: icon is recommended
+
+1 chart(s) linted, 0 chart(s) failed
+```
+* Применяем:
+```
+ helm upgrade canary canary-chart/
+Release "canary" has been upgraded. Happy Helming!
+NAME: canary
+LAST DEPLOYED: Sat Jun 14 15:54:05 2025
+NAMESPACE: default
+STATUS: deployed
+REVISION: 6
+TEST SUITE: None
+```
+* Проверяем:
+```
+tiger@VM1:~/Kubernetes/14$ curl netotest.local/v1
+<html>
+<body>
+  <h1>Hello Netlology v1.0</h1>
+</body>
+</html>
+tiger@VM1:~/Kubernetes/14$ curl netotest.local/v2
+<html>
+<body>
+  <h1>Hello Netlology v1.2</h1>
+</body>
+</html>
+```
+* Видим, что все работает.
